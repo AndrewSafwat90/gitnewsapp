@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gitnewsapp/widgets/categories-listview.dart';
 import 'package:gitnewsapp/widgets/news-listview.dart';
-import 'package:gitnewsapp/widgets/news-tile.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
