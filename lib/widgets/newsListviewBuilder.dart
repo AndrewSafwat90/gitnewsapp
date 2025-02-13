@@ -4,42 +4,38 @@ import 'package:gitnewsapp/services/news-service.dart';
 import 'package:gitnewsapp/widgets/news-listview.dart';
 
 class NewsListViewBuilder extends StatefulWidget {
-  const NewsListViewBuilder({
-    super.key,
-  });
-
   @override
   State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
 }
 
 class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
-  bool isLoading = true;
-  List<ArticleModel> article = [];
+  var future;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    getGeneralNews();
-  }
-
-  Future<void> getGeneralNews() async {
-    article = await NewsService().gitNews();
-    setState(() {
-      isLoading = false;
-    });
+    future = NewsService().gitNews();
   }
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? SliverFillRemaining(
-            child: Center(child: CircularProgressIndicator()),
-          )
-        : article.isNotEmpty
-            ? NewsListView(article: article)
-            : SliverFillRemaining(
-                child: Text('Loading News Failed'),
-              );
+    return FutureBuilder<List<ArticleModel>>(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return NewsListView(article: snapshot.data ?? []);
+        } else if (snapshot.hasError) {
+          return SliverFillRemaining(
+            child: Text('Failed loading Data'),
+          );
+        } else {
+          return SliverFillRemaining(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
+    );
   }
 }
