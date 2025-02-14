@@ -14,12 +14,9 @@ class NewsService {
       List<ArticleModel> articleList = [];
 
       for (var article in articles) {
-        ArticleModel articleModel = ArticleModel(
-          image: article['urlToImage'],
-          title: article['title'],
-          subtitle: article['description'],
-        );
+        ArticleModel articleModel = ArticleModel.fromJson(article);
 
+// factory constructor create normal constructor
         articleList.add(articleModel);
       }
       return articleList;
