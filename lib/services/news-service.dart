@@ -4,10 +4,10 @@ import 'package:gitnewsapp/models/article-model.dart';
 class NewsService {
   final dio = Dio();
 
-  Future<List<ArticleModel>> gitNews() async {
+  Future<List<ArticleModel>> gitTopHeadLines({required String category}) async {
     try {
       Response response = await dio.get(
-          'https://newsapi.org/v2/top-headlines?country=us&apiKey=6459ba74328d41cdaa8acfdacd45826c');
+          'https://newsapi.org/v2/top-headlines?country=us&apiKey=6459ba74328d41cdaa8acfdacd45826c&category=$category');
       Map<String, dynamic> jsonData = response.data;
       List<dynamic> articles = jsonData['articles'];
 

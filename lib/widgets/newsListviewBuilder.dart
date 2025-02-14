@@ -10,11 +10,12 @@ class NewsListViewBuilder extends StatefulWidget {
 
 class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   var future;
+  //final String category;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    future = NewsService().gitNews();
+    future = NewsService().gitTopHeadLines(category: 'general');
   }
 
   @override
