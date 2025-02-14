@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gitnewsapp/services/news-service.dart';
 import 'package:gitnewsapp/view/home-view.dart';
 
 void main() {
