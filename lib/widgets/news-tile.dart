@@ -13,7 +13,9 @@ class NewsTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => NewsDetailScreen(url: articleModel.urllink),
+            builder: (context) => NewsDetailScreen(
+              articleModel: articleModel,
+            ),
           ),
         );
       },
